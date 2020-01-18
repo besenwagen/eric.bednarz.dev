@@ -1,0 +1,36 @@
+html {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: #333;
+  background: #fff;
+}
+
+body {
+  margin: 0;
+  padding: 0 0 1.0em 0;
+  font: 1.5rem/1.5 Georgia, serif;
+}
+
+h1 {
+  margin: 0;
+  font: bold 1.3rem/2 Consolas, Menlo, monospace;
+}
+
+h1 a[href] {
+  outline: none;
+  color: #000;
+  background: transparent;
+  text-decoration: none;
+}
+
+h1 a[href] span {
+  color: blue;
+}
+
+h1 a[href]:hover, h1 a[href]:focus {
+  border-bottom: 1px solid blue;
+  color: blue;
+  background: transparent;
+}
