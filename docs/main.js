@@ -8,12 +8,24 @@ const STATUS_OK = 200;
 const createSvgElement = type =>
   document.createElementNS(NAMESPACE_SVG, type);
 
-function toElement(html) {
+/**
+ * @param {string} htmlString
+ * @return {Node}
+ */
+function htmlLiteralToNode(htmlLiteral) {
   const container = document.createElement('DIV');
 
-  container.innerHTML = html.trim();
+  container.innerHTML = htmlLiteral;
 
-  const element = container.firstChild;
+  return container.firstElementChild;
+}
+
+/**
+ * @param {string} htmlString
+ * @return {Node}
+ */
+function toSymbolContainer(html) {
+  const element = htmlLiteralToNode(html);
 
   element.style.display = 'none';
 
@@ -39,6 +51,9 @@ function setSymbols(svgElement) {
     );
 }
 
+/**
+ * @param {string} name
+ */
 function replacePlaceholder(name) {
   const target = document.querySelector(`#logo .${name}`);
   const replacement = useSymbol(name);
@@ -47,7 +62,7 @@ function replacePlaceholder(name) {
   target.parentNode.replaceChild(replacement, target);
 }
 
-function useCase() {
+function useSymbols() {
   const target = document.querySelector(ID_LOGO);
 
   for (const id of ['logomark', 'logotype']) {
@@ -65,7 +80,7 @@ function handleResponse(response) {
 
 function render(svgElement) {
   setSymbols(svgElement);
-  useCase();
+  useSymbols();
 }
 
 function handleRejection(reason) {
@@ -74,6 +89,6 @@ function handleRejection(reason) {
 
 fetch(SYMBOLS_URL)
   .then(handleResponse)
-  .then(toElement)
+  .then(toSymbolContainer)
   .then(render)
   .catch(handleRejection);
