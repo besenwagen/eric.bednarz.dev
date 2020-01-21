@@ -1,0 +1,6 @@
+# copy to ../Node.js
+version: "3.6"
+services:
+  app:
+    volumes:
+      - ../eric.bednarz.dev/docs:/home/node/app/public

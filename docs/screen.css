@@ -1,36 +1,224 @@
-html {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  color: #333;
-  background: #fff;
+:root {
+  --color-primary: #090;
+  --color-primary-small: #009900;
+  --color-action: #00f;
+  --color-foreground: #000;
+  --color-background: #fff;
+  --baseline: 1.5rem;
+  --logo-size: 6rem;
+  --font-copy: Georgia, serif;
+  --font-gui: Consolas, Inconsolata, Menlo, monospace;
 }
 
 body {
   margin: 0;
-  padding: 0 0 1.0em 0;
-  font: 1.5rem/1.5 Georgia, serif;
+  padding: 0 1.5rem;
+  font: 1rem/1.5 var(--font-copy);
 }
 
-h1 {
-  margin: 0;
-  font: bold 1.3rem/2 Consolas, Menlo, monospace;
+body > header {
+  padding: var(--baseline) 0;
 }
 
-h1 a[href] {
-  outline: none;
-  color: #000;
+main {
+  padding: 0 0 calc(var(--baseline) * 2);
+}
+
+body > footer {
+  border-top: 2px solid #090;
+  padding: calc(var(--baseline) / 2) 0;
+}
+
+/* GUI */
+
+body > header,
+body > aside,
+body > footer {
+  font-family: var(--font-gui);
+}
+
+body > footer a[href] {
+  color: var(--color-primary);
   background: transparent;
   text-decoration: none;
+  font-weight: bold;
 }
 
-h1 a[href] span {
-  color: blue;
+body > footer a[href="#main"] {
+  color: var(--color-foreground);
+  font-weight: normal;
 }
 
-h1 a[href]:hover, h1 a[href]:focus {
-  border-bottom: 1px solid blue;
-  color: blue;
+/* logo */
+
+#logo {
+  display: block;
+  transition: color 300ms ease;
+  color: var(--color-primary);
   background: transparent;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 2.1rem;
+}
+
+
+#logo .logomark {
+  width: 6rem;
+  height: 6rem;
+}
+
+#logo .logotype {
+  width: 100%;
+  height: 10vw;
+}
+
+/* body copy */
+
+main h1 {
+  margin: 0 0 calc(var(--baseline) * 2) 0;
+  border-bottom: 2px solid var(--color-primary);
+  color: var(--color-primary);
+  background: transparent;
+  text-align: right;
+  font-size: 2em;
+  font-weight: normal;
+}
+
+main h2 {
+  margin: 1.5rem 0 0;
+  font-weight: normal;
+  font-size: 1.3em;
+}
+
+main h3 {
+  margin: 1.5em 0 0;
+  font-weight: normal;
+  font-style: italic;
+  font-size: 1em;
+}
+
+main p {
+  margin: 0;
+}
+
+main p + p {
+  text-indent: var(--baseline);
+}
+
+main ul {
+  margin: var(--baseline) 0;
+  padding: 0;
+}
+
+main a[href] {
+  border-bottom: 1px solid var(--color-primary);
+  color: var(--color-action);
+  background: transparent;
+  text-decoration: none;
+  letter-spacing: -0.03em;
+  font-weight: bold;
+  font-family: var(--font-gui);
+}
+
+main a[href]:hover,
+main a[href]:focus {
+
+}
+
+/* hyperlinks */
+
+@media only screen and (min-width: 601px) {
+  html {
+    overflow-y: scroll;
+  }
+
+  body {
+    max-width: 48rem;
+    display: grid;
+    grid-template-rows: 0fr 1fr 0fr;
+    grid-template-areas:
+      "banner"
+      "main"
+      "contentinfo";
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    padding: 0 calc((var(--logo-size) / 2) + var(--baseline));
+    color: var(--color-foreground);
+    background: var(--color-background);
+    font: 1.3rem/1.5 var(--font-copy);
+  }
+
+  /* grid areas */
+
+  body > header {
+    grid-area: banner;
+    padding: var(--baseline) 0;
+  }
+
+  main {
+    grid-area: main;
+    padding: 0 0 calc(var(--baseline) * 2);
+  }
+
+  body > aside {
+    grid-area: complementary;
+  }
+
+  body > footer {
+    grid-area: contentinfo;
+    border-top: 2px solid #090;
+    padding: calc(var(--baseline) / 2) 0;
+  }
+
+  #logo {
+    position: relative;
+    left: calc((var(--logo-size) / 2) * -1);
+    display: inline-flex;
+    vertical-align: bottom;
+    transition: color 300ms ease;
+    color: var(--color-primary);
+    background: transparent;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 2.1rem;
+  }
+
+  #logo:hover,
+  #logo:focus {
+    color: var(--color-foreground);
+  }
+
+  #logo .logomark {
+    width: var(--logo-size);
+    height: var(--logo-size);
+  }
+
+  #logo .logomark-placeholder {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    background: var(--color-primary);
+  }
+
+  #logo .logotype {
+    display: inline-flex;
+    align-items: center;
+    width: auto;
+    height: var(--logo-size);
+    margin: 0 0 0 var(--baseline);
+  }
+
+  #logo .logotype .logotype-placeholder {
+    position: relative;
+    left: -0.1rem;
+    letter-spacing: 0.025rem;
+  }
+
+  #logo .logotype .logotype-placeholder span {
+    color: var(--color-foreground);
+    background: transparent;
+  }
 }

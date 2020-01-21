@@ -1,18 +1,117 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>eric.bednarz.dev</title>
-  <link rel="stylesheet" href="/screen.css">
+  <script src="/main.js" type="module"></script>
+  <link href="/screen.css" rel="stylesheet">
+  <style>
+    :root {
+      --logo-size: 8rem;
+    }
+
+    body > header {
+      padding-bottom: 0.5rem;
+    }
+
+    main {
+      border-top: 2px solid var(--color-primary);
+      padding: 1.5rem 0;
+    }
+
+    body > footer {
+      text-align: center;
+    }
+
+    main h1 {
+      margin: 0;
+      border-bottom: none;
+      color: var(--color-copy);
+      text-align: left;
+      font-size: 1.3rem;
+    }
+
+    main h1 + p {
+      margin-top: var(--baseline);
+    }
+
+    @media only screen and (min-width: 601px) {
+      body {
+        max-width: 68rem;
+        padding: 0 var(--logo-size);
+      }
+
+      body > header {
+        padding-bottom: var(--baseline);
+      }
+
+      main {
+        padding: 3.5em 0;
+      }
+
+      main h1 {
+        padding: 0 5rem;
+        text-align: center;
+        font-size: 2.2em;
+      }
+
+      main h1 + p {
+        margin-top: calc(var(--baseline) * 2);
+        text-align: center;
+      }
+    }
+
+    @media only screen and (min-width: 601px) and (max-width: 82rem) {
+      body {
+        padding: 0 calc(var(--baseline) + (var(--logo-size) / 2));
+      }
+
+      main h1 {
+        --crop-area: calc(100vw - (var(--baseline) + (var(--logo-size) / 2)));
+        padding: 0 calc(var(--crop-area) * 0.073);
+        font-size: calc(var(--crop-area) * 0.035);
+      }
+    }
+  </style>
 </head>
 <body>
-
-  <h1>
-    <a href="mailto:eric@bednarz.dev">
-      <span>eric</span>@<span>bednarz</span>.dev
+  <header>
+    <a id="logo" href="#main">
+      <span class="logomark">
+        <span class="logomark-placeholder"></span>
+      </span>
+      <span class="logotype">
+        <span class="logotype-placeholder">
+          <span>eric</span>.<span>bednarz</span>.dev
+        </span>
+      </span>
     </a>
-  </h1>
+  </header>
 
+  <main id="main">
+    <h1>
+      Als freelance
+      <em>JavaScript</em>
+      ontwikkelaar in
+      <em>Amsterdam</em>
+      bouw ik
+      <em>duurzame</em>
+      en
+      <em>inclusieve</em>
+      toepassingen voor het wereldwijde web en help
+      <em>scrum</em>
+      teams dat ook te doen
+    </h1>
+
+    <p>
+      <a href="/werk/">Vind ik leuk</a>!
+    </p>
+  </main>
+  <footer>
+    <a href="/contact/">contact</a>
+    |
+    <a href="/colofon/">colofon</a>
+  </footer>
 </body>
 </html>
