@@ -1,6 +1,7 @@
 :root {
-  --color-primary: #090;
-  --color-primary-small: #009900;
+  --color-primary-deco: #090;
+  --color-primary-heading: #080;
+  --color-primary-copy: #070;
   --color-action: #00f;
   --color-foreground: #000;
   --color-background: #fff;
@@ -13,6 +14,8 @@
 body {
   margin: 0;
   padding: 0 1.5rem;
+  color: var(--color-foreground);
+  background: var(--color-background);
   font: 1rem/1.5 var(--font-copy);
 }
 
@@ -25,7 +28,7 @@ main {
 }
 
 body > footer {
-  border-top: 2px solid #090;
+  border-top: 2px solid var(--color-primary-deco);
   padding: calc(var(--baseline) / 2) 0;
 }
 
@@ -38,10 +41,17 @@ body > footer {
 }
 
 body > footer a[href] {
-  color: var(--color-primary);
+  color: var(--color-primary-copy);
   background: transparent;
   text-decoration: none;
   font-weight: bold;
+}
+
+body > footer a[href]:hover {
+  outline: none;
+  border-bottom: 1px solid var(--color-primary-copy);
+  color: var(--color-action);
+  background: transparent;
 }
 
 body > footer a[href="#main"] {
@@ -54,7 +64,7 @@ body > footer a[href="#main"] {
 #logo {
   display: block;
   transition: color 300ms ease;
-  color: var(--color-primary);
+  color: var(--color-primary-deco);
   background: transparent;
   text-align: center;
   text-decoration: none;
@@ -62,10 +72,14 @@ body > footer a[href="#main"] {
   font-size: 2.1rem;
 }
 
+#logo:hover,
+#logo:focus {
+  color: var(--color-foreground);
+}
 
 #logo .logomark {
-  width: 6rem;
-  height: 6rem;
+  width: var(--logo-size);
+  height: var(--logo-size);
 }
 
 #logo .logotype {
@@ -77,8 +91,8 @@ body > footer a[href="#main"] {
 
 main h1 {
   margin: 0 0 calc(var(--baseline) * 2) 0;
-  border-bottom: 2px solid var(--color-primary);
-  color: var(--color-primary);
+  border-bottom: 2px solid var(--color-primary-deco);
+  color: var(--color-primary-heading);
   background: transparent;
   text-align: right;
   font-size: 2em;
@@ -112,18 +126,33 @@ main ul {
 }
 
 main a[href] {
-  border-bottom: 1px solid var(--color-primary);
+  border-bottom: 2px solid var(--color-primary-deco);
   color: var(--color-action);
   background: transparent;
   text-decoration: none;
-  letter-spacing: -0.03em;
   font-weight: bold;
   font-family: var(--font-gui);
 }
 
-main a[href]:hover,
-main a[href]:focus {
+main a[href]:hover {
+  outline: none;
+  border-width: 1px;
+  border-color: var(--color-action);
+  color: var(--color-primary-copy);
+  background: transparent;
+}
 
+main a[href]:focus:hover {
+  outline: none;
+  border-width: 1px;
+}
+
+a[href]:focus {
+  border-width: 0;
+  outline: 2px solid var(--color-action);
+  outline-offset: 0.2rem;
+  color: var(--color-foreground);
+  background: transparent;
 }
 
 /* hyperlinks */
@@ -145,8 +174,6 @@ main a[href]:focus {
     align-items: center;
     margin: 0 auto;
     padding: 0 calc((var(--logo-size) / 2) + var(--baseline));
-    color: var(--color-foreground);
-    background: var(--color-background);
     font: 1.3rem/1.5 var(--font-copy);
   }
 
@@ -162,10 +189,6 @@ main a[href]:focus {
     padding: 0 0 calc(var(--baseline) * 2);
   }
 
-  body > aside {
-    grid-area: complementary;
-  }
-
   body > footer {
     grid-area: contentinfo;
     border-top: 2px solid #090;
@@ -177,22 +200,6 @@ main a[href]:focus {
     left: calc((var(--logo-size) / 2) * -1);
     display: inline-flex;
     vertical-align: bottom;
-    transition: color 300ms ease;
-    color: var(--color-primary);
-    background: transparent;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 2.1rem;
-  }
-
-  #logo:hover,
-  #logo:focus {
-    color: var(--color-foreground);
-  }
-
-  #logo .logomark {
-    width: var(--logo-size);
-    height: var(--logo-size);
   }
 
   #logo .logomark-placeholder {
