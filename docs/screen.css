@@ -48,7 +48,6 @@ body > footer a[href] {
 }
 
 body > footer a[href]:hover {
-  outline: none;
   border-bottom: 1px solid var(--color-primary-copy);
   color: var(--color-action);
   background: transparent;
@@ -135,7 +134,6 @@ main a[href] {
 }
 
 main a[href]:hover {
-  outline: none;
   border-width: 1px;
   border-color: var(--color-action);
   color: var(--color-primary-copy);
@@ -143,7 +141,6 @@ main a[href]:hover {
 }
 
 main a[href]:focus:hover {
-  outline: none;
   border-width: 1px;
 }
 
@@ -153,6 +150,10 @@ a[href]:focus {
   outline-offset: 0.2rem;
   color: var(--color-foreground);
   background: transparent;
+}
+
+a[href]:focus:hover {
+  outline: none;
 }
 
 /* hyperlinks */
