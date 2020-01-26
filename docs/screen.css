@@ -140,10 +140,6 @@ main a[href]:hover {
   background: transparent;
 }
 
-main a[href]:focus:hover {
-  border-width: 1px;
-}
-
 a[href]:focus {
   border-width: 0;
   outline: 2px solid var(--color-action);
