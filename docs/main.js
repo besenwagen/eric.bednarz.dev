@@ -37,6 +37,7 @@ function useSymbol(id) {
   const useElement = createSvgElement('use');
 
   useElement.setAttribute('href', `#${id}`);
+  svgElement.setAttribute('aria-hidden', 'true');
   svgElement.appendChild(useElement);
 
   return svgElement;
