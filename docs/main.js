@@ -1,16 +1,20 @@
-/* global fetch */
+/* global document fetch */
 
 const NAMESPACE_SVG = 'http://www.w3.org/2000/svg';
 const SYMBOLS_URL = '/symbols.svg';
 const ID_LOGO = 'logo';
 const STATUS_OK = 200;
 
+/**
+ * @param {string} type
+ * @returns {SVGElement}
+ */
 const createSvgElement = type =>
   document.createElementNS(NAMESPACE_SVG, type);
 
 /**
- * @param {string} htmlString
- * @return {Node}
+ * @param {string} htmlLiteral
+ * @return {*}
  */
 function htmlLiteralToNode(htmlLiteral) {
   const container = document.createElement('DIV');
@@ -21,20 +25,24 @@ function htmlLiteralToNode(htmlLiteral) {
 }
 
 /**
- * @param {string} htmlString
- * @return {Node}
+ * @param {string} htmlLiteral
+ * @return {SVGElement}
  */
-function toSymbolContainer(html) {
-  const element = htmlLiteralToNode(html);
+function toSymbolContainer(htmlLiteral) {
+  const element = htmlLiteralToNode(htmlLiteral);
 
   element.style.display = 'none';
 
   return element;
 }
 
+/**
+ * @param {string} id
+ * @returns {SVGElement}
+ */
 function useSymbol(id) {
-  const svgElement = createSvgElement('svg');
-  const useElement = createSvgElement('use');
+  const [svgElement, useElement] = ['svg', 'use']
+    .map(createSvgElement);
 
   useElement.setAttribute('href', `#${id}`);
   svgElement.setAttribute('aria-hidden', 'true');
@@ -43,6 +51,9 @@ function useSymbol(id) {
   return svgElement;
 }
 
+/**
+ * @param {SVGElement} svgElement
+ */
 function setSymbols(svgElement) {
   document
     .body
@@ -56,7 +67,7 @@ function setSymbols(svgElement) {
  * @param {string} name
  */
 function replacePlaceholder(name) {
-  const target = document.querySelector(`#logo .${name}`);
+  const target = document.querySelector(`#${ID_LOGO} .${name}`);
   const replacement = useSymbol(name);
 
   replacement.setAttribute('class', target.className);
@@ -64,13 +75,15 @@ function replacePlaceholder(name) {
 }
 
 function useSymbols() {
-  const target = document.querySelector(ID_LOGO);
-
   for (const id of ['logomark', 'logotype']) {
     replacePlaceholder(id);
   }
 }
 
+/**
+ * @param {Response} response
+ * @returns {Promise}
+ */
 function handleResponse(response) {
   if (response.status === STATUS_OK) {
     return response.text();
@@ -79,11 +92,17 @@ function handleResponse(response) {
   return Promise.reject(response);
 }
 
+/**
+ * @param {SVGElement} svgElement
+ */
 function render(svgElement) {
   setSymbols(svgElement);
   useSymbols();
 }
 
+/**
+ * @param {Error} reason
+ */
 function handleRejection(reason) {
   console.error(reason);
 }
